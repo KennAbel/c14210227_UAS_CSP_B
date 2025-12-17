@@ -5,8 +5,7 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 
 export async function logout() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = await createClient()
   await supabase.auth.signOut()
   return redirect('/login')
 }
